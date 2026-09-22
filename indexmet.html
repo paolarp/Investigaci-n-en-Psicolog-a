@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Elementos de la metodología de investigación</title>
+  <style>
+    :root{
+      --navy:#0f2f5f;
+      --blue:#1769c2;
+      --blue-2:#2e86de;
+      --light:#eef6ff;
+      --lighter:#f8fbff;
+      --line:#cfe2f5;
+      --text:#183153;
+      --muted:#5c6f86;
+      --white:#ffffff;
+      --shadow:0 8px 24px rgba(20,55,95,.08);
+    }
+
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:Arial, Helvetica, sans-serif;
+      background:linear-gradient(180deg,#f4f9ff 0%,#ffffff 100%);
+      color:var(--text);
+    }
+
+    header{
+      background:linear-gradient(90deg,var(--navy),#174c83);
+      color:white;
+      padding:16px 28px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:20px;
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      font-weight:700;
+    }
+
+    .brand-icon{
+      width:38px;
+      height:38px;
+      border-radius:10px;
+      background:white;
+      color:var(--navy);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:22px;
+    }
+
+    .brand small{
+      display:block;
+      font-weight:400;
+      opacity:.85;
+      margin-top:2px;
+    }
+
+    .container{
+      max-width:1200px;
+      margin:28px auto;
+      padding:0 18px 40px;
+      display:grid;
+      grid-template-columns:280px 1fr;
+      gap:24px;
+    }
+
+    .sidebar{
+      background:var(--white);
+      border:1px solid var(--line);
+      border-radius:18px;
+      padding:24px;
+      box-shadow:var(--shadow);
+      height:max-content;
+      position:sticky;
+      top:20px;
+    }
+
+    .sidebar h2{
+      margin-top:0;
+      font-size:27px;
+      line-height:1.12;
+      color:var(--navy);
+    }
+
+    .sidebar .accent{
+      width:48px;
+      height:5px;
+      border-radius:999px;
+      background:var(--blue-2);
+      margin:18px 0;
+    }
+
+    .sidebar p{
+      line-height:1.55;
+      color:#355579;
+    }
+
+    .quote{
+      margin-top:24px;
+      padding:18px;
+      border-radius:14px;
+      background:var(--light);
+      font-style:italic;
+      color:#2f5f91;
+      line-height:1.5;
+    }
+
+    main{
+      min-width:0;
+    }
+
+    .hero{
+      background:linear-gradient(90deg,#eaf5ff,#f7fbff);
+      border:1px solid var(--line);
+      border-radius:18px;
+      padding:24px 26px;
+      margin-bottom:18px;
+      box-shadow:var(--shadow);
+    }
+
+    .hero h1{
+      margin:0 0 8px;
+      color:var(--navy);
+      font-size:30px;
+      line-height:1.15;
+    }
+
+    .hero p{
+      margin:0;
+      color:#41627f;
+      line-height:1.5;
+    }
+
+    .accordion-item{
+      background:var(--white);
+      border:1px solid var(--line);
+      border-radius:14px;
+      margin-bottom:12px;
+      overflow:hidden;
+      box-shadow:0 4px 14px rgba(20,55,95,.05);
+      transition:.2s ease;
+    }
+
+    .accordion-item:hover{
+      transform:translateY(-1px);
+      box-shadow:0 8px 20px rgba(20,55,95,.08);
+    }
+
+    .accordion-header{
+      width:100%;
+      border:0;
+      background:white;
+      color:var(--navy);
+      padding:15px 18px;
+      display:flex;
+      align-items:center;
+      gap:14px;
+      cursor:pointer;
+      text-align:left;
+      font-weight:700;
+      font-size:16px;
+    }
+
+    .accordion-header:hover{
+      background:#fbfdff;
+    }
+
+    .num{
+      min-width:40px;
+      width:40px;
+      height:40px;
+      border-radius:50%;
+      background:linear-gradient(180deg,#2d7bd2,#125dad);
+      color:white;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:18px;
+      box-shadow:0 4px 10px rgba(23,105,194,.25);
+    }
+
+    .title-wrap{
+      flex:1;
+    }
+
+    .subtitle{
+      font-weight:400;
+      font-style:italic;
+      color:#4875a2;
+      margin-left:8px;
+    }
+
+    .icon{
+      font-size:25px;
+      font-weight:400;
+      color:var(--blue);
+      transition:transform .2s ease;
+    }
+
+    .accordion-item.open .icon{
+      transform:rotate(45deg);
+    }
+
+    .accordion-content{
+      max-height:0;
+      overflow:hidden;
+      transition:max-height .35s ease;
+      background:linear-gradient(180deg,#fbfdff,#f4f9ff);
+    }
+
+    .content-inner{
+      padding:10px 24px 22px 72px;
+      line-height:1.6;
+    }
+
+    .content-inner ul{
+      margin:8px 0 0;
+      padding-left:22px;
+    }
+
+    .content-inner li{
+      margin:4px 0;
+    }
+
+    .subgrid{
+      display:grid;
+      gap:10px;
+      margin-top:8px;
+    }
+
+    .subcard{
+      border:1px solid #d9e8f7;
+      background:white;
+      border-radius:12px;
+      padding:14px 16px;
+    }
+
+    .subcard strong{
+      color:var(--navy);
+    }
+
+    .letter{
+      display:inline-flex;
+      width:28px;
+      height:28px;
+      align-items:center;
+      justify-content:center;
+      border-radius:8px;
+      margin-right:8px;
+      background:#e7f2ff;
+      color:#155ea9;
+      border:1px solid #bcd6f1;
+      font-weight:700;
+    }
+
+    footer{
+      max-width:1200px;
+      margin:0 auto 30px;
+      padding:0 18px;
+    }
+
+    .reference{
+      background:#eef6ff;
+      border:1px solid var(--line);
+      border-radius:14px;
+      padding:18px 20px;
+      color:#294a6d;
+      line-height:1.6;
+    }
+
+    .reference strong{
+      color:var(--navy);
+    }
+
+    @media (max-width: 850px){
+      .container{
+        grid-template-columns:1fr;
+      }
+      .sidebar{
+        position:static;
+      }
+      .content-inner{
+        padding:10px 20px 20px;
+      }
+      .hero h1{
+        font-size:24px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="brand">
+    <div class="brand-icon">📘</div>
+    <div>
+      Investigación en Psicología
+      <small>Recursos académicos</small>
+    </div>
+  </div>
+</header>
+
+<div class="container">
+  <aside class="sidebar">
+    <h2>Anteproyecto o protocolo de investigación</h2>
+    <div class="accent"></div>
+    <p>
+      Estructura que organiza y orienta el proceso de investigación,
+      permitiendo planificar, delimitar y sistematizar las decisiones
+      metodológicas antes de ejecutar el estudio.
+    </p>
+    <div class="quote">
+      Un protocolo de investigación permite organizar de manera
+      anticipada los elementos fundamentales de un estudio.
+    </div>
+  </aside>
+
+  <main>
+    <section class="hero">
+      <h1>Elementos de la metodología de investigación que conforman un anteproyecto</h1>
+      <p>Haz clic en cada sección para desplegar u ocultar la información.</p>
+    </section>
+
+    <div class="accordion-item">
+      <button class="accordion-header">
+        <span class="num">1</span>
+        <span class="title-wrap">DATOS DE IDENTIFICACIÓN</span>
+        <span class="icon">+</span>
+      </button>
+      <div class="accordion-content">
+        <div class="content-inner">
+          <ul>
+            <li>Investigador(es)</li>
+            <li>Institución</li>
+            <li>Título del proyecto</li>
+            <li>Temporalidad</li>
+            <li>Tipo de investigación</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="accordion-item">
+      <button class="accordion-header">
+        <span class="num">2</span>
+        <span class="title-wrap">RESUMEN DEL PROYECTO</span>
+        <span class="icon">+</span>
+      </button>
+      <div class="accordion-content">
+        <div class="content-inner">
+          <ul>
+            <li>Panorama general del estudio.</li>
+            <li>Síntesis del problema, propósito y características principales del proyecto.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="accordion-item open">
+      <button class="accordion-header">
+        <span class="num">3</span>
+        <span class="title-wrap">DELIMITACIÓN DEL PROBLEMA</span>
+        <span class="icon">+</span>
+      </button>
+      <div class="accordion-content">
+        <div class="content-inner">
+          <ul>
+            <li><strong>Objeto de estudio:</strong> qué se investigará.</li>
+            <li><strong>Planteamiento del problema:</strong> problemática que se pretende analizar.</li>
+            <li><strong>Justificación:</strong> importancia y pertinencia del estudio.</li>
+            <li><strong>Objetivos o propósitos:</strong> resultados que se pretende alcanzar.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="accordion-item">
+      <button class="accordion-header">
+        <span class="num">4</span>
+        <span class="title-wrap">MARCO TEÓRICO-CONCEPTUAL Y REFERENCIAL</span>
+        <span class="icon">+</span>
+      </button>
+      <div class="accordion-content">
+        <div class="content-inner">
+          <ul>
+            <li>Antecedentes del problema.</li>
+            <li>Teorías relacionadas.</li>
+            <li>Investigaciones previas.</li>
+            <li>Conceptos fundamentales.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="accordion-item">
+      <button class="accordion-header">
+        <span class="num">5</span>
+        <span class="title-wrap">MARCO CONTEXTUAL O SITUACIONAL</span>
+        <span class="icon">+</span>
+      </button>
+      <div class="accordion-content">
+        <div class="content-inner">
+          <ul>
+            <li>Contexto del estudio.</li>
+            <li>Espacio.</li>
+            <li>Tiempo.</li>
+            <li>Características del entorno.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="accordion-item open">
+      <button class="accordion-header">
+        <span class="num">6</span>
+        <span class="title-wrap">DESARROLLO METODOLÓGICO <span class="subtitle">¿Cómo se investigará?</span></span>
+        <span class="icon">+</span>
+      </button>
+      <div class="accordion-content">
+        <div class="content-inner">
+          <div class="subgrid">
+
+            <div class="subcard">
+              <span class="letter">A</span>
+              <strong>Enfoque y tipo de investigación</strong>
+              <p>Determina y justifica la perspectiva metodológica que guiará el estudio.</p>
+            </div>
+
+            <div class="subcard">
+              <span class="letter">B</span>
+              <strong>Hipótesis</strong>
+              <p>Respuesta tentativa al problema de investigación, cuando corresponda.</p>
+            </div>
+
+            <div class="subcard">
+              <span class="letter">C</span>
+              <strong>Variables</strong>
+              <ul>
+                <li>Identificación.</li>
+                <li>Definición conceptual.</li>
+                <li>Definición operacional.</li>
+              </ul>
+            </div>
+
+            <div class="subcard">
+              <span class="letter">D</span>
+              <strong>Población y muestra</strong>
+              <ul>
+                <li>Población de estudio.</li>
+                <li>Unidades de análisis.</li>
+                <li>Selección de la muestra.</li>
+              </ul>
+            </div>
+
+            <div class="subcard">
+              <span class="letter">E</span>
+              <strong>Recolección de información</strong>
+              <ul>
+                <li><strong>Procedimiento:</strong> pasos para obtener la información.</li>
+                <li><strong>Técnicas:</strong> documentales y de campo.</li>
+                <li><strong>Instrumentos:</strong> cuestionario, entrevista, observación y fichas de registro.</li>
+              </ul>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="accordion-item">
+      <button class="accordion-header">
+        <span class="num">7</span>
+        <span class="title-wrap">RECURSOS</span>
+        <span class="icon">+</span>
+      </button>
+      <div class="accordion-content">
+        <div class="content-inner">
+          <ul>
+            <li>Humanos.</li>
+            <li>Materiales.</li>
+            <li>Técnicos.</li>
+            <li>Financieros.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="accordion-item">
+      <button class="accordion-header">
+        <span class="num">8</span>
+        <span class="title-wrap">PROGRAMACIÓN DE ACTIVIDADES</span>
+        <span class="icon">+</span>
+      </button>
+      <div class="accordion-content">
+        <div class="content-inner">
+          <ul>
+            <li>Etapas del estudio.</li>
+            <li>Actividades.</li>
+            <li>Tiempo de ejecución.</li>
+            <li>Cronograma.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<footer>
+  <div class="reference">
+    <strong>Referencia APA 7</strong><br>
+    Ortiz-García, J. M. (2006). <em>Guía descriptiva para la elaboración de protocolos de investigación</em>.
+    <em>Salud en Tabasco, 12</em>(3), 530–540.
+  </div>
+</footer>
+
+<script>
+  const items = document.querySelectorAll('.accordion-item');
+
+  function setHeight(item){
+    const content = item.querySelector('.accordion-content');
+    if(item.classList.contains('open')){
+      content.style.maxHeight = content.scrollHeight + 'px';
+    } else {
+      content.style.maxHeight = '0px';
+    }
+  }
+
+  items.forEach(item => {
+    const header = item.querySelector('.accordion-header');
+
+    header.addEventListener('click', () => {
+      item.classList.toggle('open');
+      setHeight(item);
+    });
+
+    setHeight(item);
+  });
+
+  window.addEventListener('resize', () => {
+    items.forEach(setHeight);
+  });
+</script>
+
+</body>
+</html>
