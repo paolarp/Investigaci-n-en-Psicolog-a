@@ -1,553 +1,384 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Elementos de la metodología de investigación</title>
-  <style>
-    :root{
-      --navy:#0f2f5f;
-      --blue:#1769c2;
-      --blue-2:#2e86de;
-      --light:#eef6ff;
-      --lighter:#f8fbff;
-      --line:#cfe2f5;
-      --text:#183153;
-      --muted:#5c6f86;
-      --white:#ffffff;
-      --shadow:0 8px 24px rgba(20,55,95,.08);
-    }
-
-    *{box-sizing:border-box}
-    body{
-      margin:0;
-      font-family:Arial, Helvetica, sans-serif;
-      background:linear-gradient(180deg,#f4f9ff 0%,#ffffff 100%);
-      color:var(--text);
-    }
-
-    header{
-      background:linear-gradient(90deg,var(--navy),#174c83);
-      color:white;
-      padding:16px 28px;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:20px;
-    }
-
-    .brand{
-      display:flex;
-      align-items:center;
-      gap:12px;
-      font-weight:700;
-    }
-
-    .brand-icon{
-      width:38px;
-      height:38px;
-      border-radius:10px;
-      background:white;
-      color:var(--navy);
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      font-size:22px;
-    }
-
-    .brand small{
-      display:block;
-      font-weight:400;
-      opacity:.85;
-      margin-top:2px;
-    }
-
-    .container{
-      max-width:1200px;
-      margin:28px auto;
-      padding:0 18px 40px;
-      display:grid;
-      grid-template-columns:280px 1fr;
-      gap:24px;
-    }
-
-    .sidebar{
-      background:var(--white);
-      border:1px solid var(--line);
-      border-radius:18px;
-      padding:24px;
-      box-shadow:var(--shadow);
-      height:max-content;
-      position:sticky;
-      top:20px;
-    }
-
-    .sidebar h2{
-      margin-top:0;
-      font-size:27px;
-      line-height:1.12;
-      color:var(--navy);
-    }
-
-    .sidebar .accent{
-      width:48px;
-      height:5px;
-      border-radius:999px;
-      background:var(--blue-2);
-      margin:18px 0;
-    }
-
-    .sidebar p{
-      line-height:1.55;
-      color:#355579;
-    }
-
-    .quote{
-      margin-top:24px;
-      padding:18px;
-      border-radius:14px;
-      background:var(--light);
-      font-style:italic;
-      color:#2f5f91;
-      line-height:1.5;
-    }
-
-    main{
-      min-width:0;
-    }
-
-    .hero{
-      background:linear-gradient(90deg,#eaf5ff,#f7fbff);
-      border:1px solid var(--line);
-      border-radius:18px;
-      padding:24px 26px;
-      margin-bottom:18px;
-      box-shadow:var(--shadow);
-    }
-
-    .hero h1{
-      margin:0 0 8px;
-      color:var(--navy);
-      font-size:30px;
-      line-height:1.15;
-    }
-
-    .hero p{
-      margin:0;
-      color:#41627f;
-      line-height:1.5;
-    }
-
-    .accordion-item{
-      background:var(--white);
-      border:1px solid var(--line);
-      border-radius:14px;
-      margin-bottom:12px;
-      overflow:hidden;
-      box-shadow:0 4px 14px rgba(20,55,95,.05);
-      transition:.2s ease;
-    }
-
-    .accordion-item:hover{
-      transform:translateY(-1px);
-      box-shadow:0 8px 20px rgba(20,55,95,.08);
-    }
-
-    .accordion-header{
-      width:100%;
-      border:0;
-      background:white;
-      color:var(--navy);
-      padding:15px 18px;
-      display:flex;
-      align-items:center;
-      gap:14px;
-      cursor:pointer;
-      text-align:left;
-      font-weight:700;
-      font-size:16px;
-    }
-
-    .accordion-header:hover{
-      background:#fbfdff;
-    }
-
-    .num{
-      min-width:40px;
-      width:40px;
-      height:40px;
-      border-radius:50%;
-      background:linear-gradient(180deg,#2d7bd2,#125dad);
-      color:white;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      font-size:18px;
-      box-shadow:0 4px 10px rgba(23,105,194,.25);
-    }
-
-    .title-wrap{
-      flex:1;
-    }
-
-    .subtitle{
-      font-weight:400;
-      font-style:italic;
-      color:#4875a2;
-      margin-left:8px;
-    }
-
-    .icon{
-      font-size:25px;
-      font-weight:400;
-      color:var(--blue);
-      transition:transform .2s ease;
-    }
-
-    .accordion-item.open .icon{
-      transform:rotate(45deg);
-    }
-
-    .accordion-content{
-      max-height:0;
-      overflow:hidden;
-      transition:max-height .35s ease;
-      background:linear-gradient(180deg,#fbfdff,#f4f9ff);
-    }
-
-    .content-inner{
-      padding:10px 24px 22px 72px;
-      line-height:1.6;
-    }
-
-    .content-inner ul{
-      margin:8px 0 0;
-      padding-left:22px;
-    }
-
-    .content-inner li{
-      margin:4px 0;
-    }
-
-    .subgrid{
-      display:grid;
-      gap:10px;
-      margin-top:8px;
-    }
-
-    .subcard{
-      border:1px solid #d9e8f7;
-      background:white;
-      border-radius:12px;
-      padding:14px 16px;
-    }
-
-    .subcard strong{
-      color:var(--navy);
-    }
-
-    .letter{
-      display:inline-flex;
-      width:28px;
-      height:28px;
-      align-items:center;
-      justify-content:center;
-      border-radius:8px;
-      margin-right:8px;
-      background:#e7f2ff;
-      color:#155ea9;
-      border:1px solid #bcd6f1;
-      font-weight:700;
-    }
-
-    footer{
-      max-width:1200px;
-      margin:0 auto 30px;
-      padding:0 18px;
-    }
-
-    .reference{
-      background:#eef6ff;
-      border:1px solid var(--line);
-      border-radius:14px;
-      padding:18px 20px;
-      color:#294a6d;
-      line-height:1.6;
-    }
-
-    .reference strong{
-      color:var(--navy);
-    }
-
-    @media (max-width: 850px){
-      .container{
-        grid-template-columns:1fr;
-      }
-      .sidebar{
-        position:static;
-      }
-      .content-inner{
-        padding:10px 20px 20px;
-      }
-      .hero h1{
-        font-size:24px;
-      }
-    }
-  </style>
-</head>
-<body>
-
-<header>
-  <div class="brand">
-    <div class="brand-icon">📘</div>
-    <div>
-      Investigación en Psicología
-      <small>Recursos académicos</small>
-    </div>
-  </div>
-</header>
-
-<div class="container">
-  <aside class="sidebar">
-    <h2>Anteproyecto o protocolo de investigación</h2>
-    <div class="accent"></div>
-    <p>
-      Estructura que organiza y orienta el proceso de investigación,
-      permitiendo planificar, delimitar y sistematizar las decisiones
-      metodológicas antes de ejecutar el estudio.
-    </p>
-    <div class="quote">
-      Un protocolo de investigación permite organizar de manera
-      anticipada los elementos fundamentales de un estudio.
-    </div>
-  </aside>
-
-  <main>
-    <section class="hero">
-      <h1>Elementos de la metodología de investigación que conforman un anteproyecto</h1>
-      <p>Haz clic en cada sección para desplegar u ocultar la información.</p>
-    </section>
-
-    <div class="accordion-item">
-      <button class="accordion-header">
-        <span class="num">1</span>
-        <span class="title-wrap">DATOS DE IDENTIFICACIÓN</span>
-        <span class="icon">+</span>
-      </button>
-      <div class="accordion-content">
-        <div class="content-inner">
-          <ul>
-            <li>Investigador(es)</li>
-            <li>Institución</li>
-            <li>Título del proyecto</li>
-            <li>Temporalidad</li>
-            <li>Tipo de investigación</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-
-    <div class="accordion-item">
-      <button class="accordion-header">
-        <span class="num">2</span>
-        <span class="title-wrap">RESUMEN DEL PROYECTO</span>
-        <span class="icon">+</span>
-      </button>
-      <div class="accordion-content">
-        <div class="content-inner">
-          <ul>
-            <li>Panorama general del estudio.</li>
-            <li>Síntesis del problema, propósito y características principales del proyecto.</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-
-    <div class="accordion-item open">
-      <button class="accordion-header">
-        <span class="num">3</span>
-        <span class="title-wrap">DELIMITACIÓN DEL PROBLEMA</span>
-        <span class="icon">+</span>
-      </button>
-      <div class="accordion-content">
-        <div class="content-inner">
-          <ul>
-            <li><strong>Objeto de estudio:</strong> qué se investigará.</li>
-            <li><strong>Planteamiento del problema:</strong> problemática que se pretende analizar.</li>
-            <li><strong>Justificación:</strong> importancia y pertinencia del estudio.</li>
-            <li><strong>Objetivos o propósitos:</strong> resultados que se pretende alcanzar.</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-
-    <div class="accordion-item">
-      <button class="accordion-header">
-        <span class="num">4</span>
-        <span class="title-wrap">MARCO TEÓRICO-CONCEPTUAL Y REFERENCIAL</span>
-        <span class="icon">+</span>
-      </button>
-      <div class="accordion-content">
-        <div class="content-inner">
-          <ul>
-            <li>Antecedentes del problema.</li>
-            <li>Teorías relacionadas.</li>
-            <li>Investigaciones previas.</li>
-            <li>Conceptos fundamentales.</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-
-    <div class="accordion-item">
-      <button class="accordion-header">
-        <span class="num">5</span>
-        <span class="title-wrap">MARCO CONTEXTUAL O SITUACIONAL</span>
-        <span class="icon">+</span>
-      </button>
-      <div class="accordion-content">
-        <div class="content-inner">
-          <ul>
-            <li>Contexto del estudio.</li>
-            <li>Espacio.</li>
-            <li>Tiempo.</li>
-            <li>Características del entorno.</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-
-    <div class="accordion-item open">
-      <button class="accordion-header">
-        <span class="num">6</span>
-        <span class="title-wrap">DESARROLLO METODOLÓGICO <span class="subtitle">¿Cómo se investigará?</span></span>
-        <span class="icon">+</span>
-      </button>
-      <div class="accordion-content">
-        <div class="content-inner">
-          <div class="subgrid">
-
-            <div class="subcard">
-              <span class="letter">A</span>
-              <strong>Enfoque y tipo de investigación</strong>
-              <p>Determina y justifica la perspectiva metodológica que guiará el estudio.</p>
-            </div>
-
-            <div class="subcard">
-              <span class="letter">B</span>
-              <strong>Hipótesis</strong>
-              <p>Respuesta tentativa al problema de investigación, cuando corresponda.</p>
-            </div>
-
-            <div class="subcard">
-              <span class="letter">C</span>
-              <strong>Variables</strong>
-              <ul>
-                <li>Identificación.</li>
-                <li>Definición conceptual.</li>
-                <li>Definición operacional.</li>
-              </ul>
-            </div>
-
-            <div class="subcard">
-              <span class="letter">D</span>
-              <strong>Población y muestra</strong>
-              <ul>
-                <li>Población de estudio.</li>
-                <li>Unidades de análisis.</li>
-                <li>Selección de la muestra.</li>
-              </ul>
-            </div>
-
-            <div class="subcard">
-              <span class="letter">E</span>
-              <strong>Recolección de información</strong>
-              <ul>
-                <li><strong>Procedimiento:</strong> pasos para obtener la información.</li>
-                <li><strong>Técnicas:</strong> documentales y de campo.</li>
-                <li><strong>Instrumentos:</strong> cuestionario, entrevista, observación y fichas de registro.</li>
-              </ul>
-            </div>
-
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="accordion-item">
-      <button class="accordion-header">
-        <span class="num">7</span>
-        <span class="title-wrap">RECURSOS</span>
-        <span class="icon">+</span>
-      </button>
-      <div class="accordion-content">
-        <div class="content-inner">
-          <ul>
-            <li>Humanos.</li>
-            <li>Materiales.</li>
-            <li>Técnicos.</li>
-            <li>Financieros.</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-
-    <div class="accordion-item">
-      <button class="accordion-header">
-        <span class="num">8</span>
-        <span class="title-wrap">PROGRAMACIÓN DE ACTIVIDADES</span>
-        <span class="icon">+</span>
-      </button>
-      <div class="accordion-content">
-        <div class="content-inner">
-          <ul>
-            <li>Etapas del estudio.</li>
-            <li>Actividades.</li>
-            <li>Tiempo de ejecución.</li>
-            <li>Cronograma.</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-
-  </main>
-</div>
-
-<footer>
-  <div class="reference">
-    <strong>Referencia</strong><br>
-    Ortiz-García, J. M. (2006). <em>Guía descriptiva para la elaboración de protocolos de investigación</em>.
-    <em>Salud en Tabasco, 12</em>(3), 530–540.
-  </div>
-</footer>
-
-<script>
-  const items = document.querySelectorAll('.accordion-item');
-
-  function setHeight(item){
-    const content = item.querySelector('.accordion-content');
-    if(item.classList.contains('open')){
-      content.style.maxHeight = content.scrollHeight + 'px';
-    } else {
-      content.style.maxHeight = '0px';
-    }
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cuadro sinóptico — Anteproyecto de investigación</title>
+<style>
+  :root {
+    --ink: #22252B;
+    --muted: #5B5F66;
+    --faint: #8B8E93;
+    --accent: #7A3B2E;
+    --accent-soft: #D8B48A;
+    --bg: #F5F2EA;
+    --card: #FFFFFF;
+    --card-closed: #FBFAF6;
+    --border: #E4DFD2;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    font-family: Georgia, 'Iowan Old Style', 'Palatino Linotype', serif;
+    color: var(--ink);
+  }
+  .sans {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  }
+  .wrap {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 40px 24px 96px;
   }
 
-  items.forEach(item => {
-    const header = item.querySelector('.accordion-header');
+  /* Header / course info */
+  .course-header {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding-bottom: 22px;
+    margin-bottom: 28px;
+    border-bottom: 1px solid var(--border);
+    flex-wrap: wrap;
+  }
+  .logo-box {
+    flex: none;
+    width: 84px;
+    height: 84px;
+    border-radius: 10px;
+    background: var(--ink);
+    color: #F5F2EA;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    font-size: 20px;
+    font-family: Georgia, serif;
+    overflow: hidden;
+  }
+  .logo-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    background: #fff;
+  }
+  .course-info {
+    flex: 1;
+    min-width: 220px;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+  }
+  .course-info .row {
+    font-size: 13.5px;
+    color: var(--muted);
+  }
+  .course-info .row strong {
+    color: var(--ink);
+    font-weight: 700;
+  }
 
-    header.addEventListener('click', () => {
-      item.classList.toggle('open');
-      setHeight(item);
+  /* Title block */
+  .title-block {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    border-bottom: 2px solid var(--ink);
+    padding-bottom: 28px;
+    margin-bottom: 32px;
+  }
+  .kicker {
+    font-size: 13px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 700;
+  }
+  h1 {
+    margin: 0;
+    font-size: 32px;
+    line-height: 1.25;
+  }
+  .subtitle {
+    margin: 4px 0 0;
+    font-size: 16px;
+    color: var(--muted);
+  }
+  .instructions {
+    margin: 6px 0 0;
+    font-size: 13.5px;
+    color: var(--faint);
+    font-style: italic;
+  }
+
+  /* Accordion */
+  .accordion { display: flex; flex-direction: column; gap: 14px; }
+  .item {
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    background: var(--card-closed);
+    overflow: hidden;
+    transition: background 0.15s ease;
+  }
+  .item.open { background: var(--card); }
+  .item-header {
+    all: unset;
+    box-sizing: border-box;
+    cursor: pointer;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 18px 20px;
+  }
+  .item-header:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .num {
+    flex: none;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: var(--ink);
+    color: var(--bg);
+    font-family: Georgia, serif;
+    font-weight: 700;
+    font-size: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .item-title {
+    flex-grow: 1;
+    text-align: left;
+    font-size: 17px;
+    font-weight: 600;
+  }
+  .chev {
+    flex: none;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.15s ease;
+  }
+  .item.open .chev { transform: rotate(180deg); }
+  .item-content {
+    display: none;
+    padding: 4px 20px 22px 70px;
+  }
+  .item.open .item-content { display: grid; }
+  .item-content {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: 24px;
+    row-gap: 10px;
+  }
+  .bullet {
+    padding-left: 14px;
+    border-left: 2px solid var(--accent-soft);
+    font-size: 14.5px;
+    line-height: 1.5;
+    color: #3A3D42;
+  }
+  @media (max-width: 640px) {
+    .item-content { grid-template-columns: 1fr; padding-left: 20px; }
+  }
+
+  /* Reflection / reference */
+  .closing {
+    border-top: 1px solid var(--border);
+    padding-top: 26px;
+    margin-top: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .closing p.quote {
+    margin: 0;
+    font-size: 14.5px;
+    line-height: 1.65;
+    color: var(--muted);
+    font-style: italic;
+  }
+  .ref-label {
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--faint);
+    font-weight: 700;
+  }
+  .ref-entry {
+    margin: 4px 0 0;
+    padding-left: 20px;
+    text-indent: -20px;
+    font-size: 13.5px;
+    line-height: 1.55;
+    color: var(--muted);
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- Encabezado del curso -->
+  <div class="course-header sans">
+    <div class="logo-box">
+      <img src="data:image/jpeg;base64,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" alt="Escudo UNITEC">
+    </div>
+    <div class="course-info">
+      <div class="row"><strong>Alumna:</strong> Paola Odeth Ruiz Pichardo</div>
+      <div class="row"><strong>Materia:</strong> Investigación aplicada en psicología</div>
+      <div class="row"><strong>Docente:</strong> Dr. Sinuhe Guardado López</div>
+      <div class="row"><strong>Fecha:</strong> 26/09/2026</div>
+    </div>
+  </div>
+
+  <!-- Título -->
+  <div class="title-block">
+    <div class="kicker sans">Aportación 1</div>
+    <h1>Elementos de la metodología de investigación en un anteproyecto</h1>
+    <p class="subtitle sans">Esquema (cuadro sinóptico) · Anteproyecto de investigación, ocho apartados (Ortiz&#8209;García, 2006)</p>
+    <p class="instructions sans">Haz clic en cada apartado para expandir o cerrar su contenido.</p>
+  </div>
+
+  <!-- Acordeón -->
+  <div class="accordion sans" id="accordion"></div>
+
+  <!-- Reflexión y referencia -->
+  <div class="closing sans">
+    <p class="quote">Al leer esta guía pensé en lo distinto que se siente armar un protocolo cuando ya se ha trabajado con planes SMAE o con los formularios de la clínica dermatológica, ahí uno intuye la lógica de delimitar población, variables y recursos casi sin darse cuenta, pero verlo desglosado así ayuda a nombrar cada paso con precisión.</p>
+    <div>
+      <div class="ref-label">Referencia</div>
+      <p class="ref-entry">Ortiz-García, J. M. (2006). Guía descriptiva para la elaboración de protocolos de investigación. <em>Salud en Tabasco, 12</em>(3), 530-540.</p>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  var SECTIONS = [
+    {
+      num: 1,
+      title: "Datos de identificación",
+      bullets: [
+        "Participantes, responsable, colaboradores, institución de adscripción, institución que respalda el proyecto",
+        "Datos del proyecto, título, fecha de inscripción, fechas de inicio y término, tipología de la investigación"
+      ]
+    },
+    {
+      num: 2,
+      title: "Resumen del proyecto",
+      bullets: [
+        "Panorama general y objetivo del estudio",
+        "Estructura del documento"
+      ]
+    },
+    {
+      num: 3,
+      title: "Delimitación del problema",
+      bullets: [
+        "Determinación del objeto de estudio, ¿qué voy a investigar?",
+        "Planteamiento del problema, naturaleza del problema, situación real frente a situación deseada, pregunta de investigación",
+        "Justificación del estudio, por qué y para qué se investiga, utilidad esperada",
+        "Objetivos de investigación, general y específicos, vertientes básica o aplicada, alcance exploratorio, descriptivo, correlacional o explicativo",
+        "Viabilidad del proyecto"
+      ]
+    },
+    {
+      num: 4,
+      title: "Marco teórico-conceptual-referencial",
+      bullets: [
+        "Marco teórico, corrientes o enfoques que sustentan el estudio",
+        "Marco referencial, investigaciones previas sobre el objeto de estudio, el estado del arte",
+        "Marco conceptual, definición de los términos centrales"
+      ]
+    },
+    {
+      num: 5,
+      title: "Marco contextual o situacional",
+      bullets: [
+        "Delimitación espacial, dónde",
+        "Delimitación temporal, cuándo"
+      ]
+    },
+    {
+      num: 6,
+      title: "Desarrollo metodológico",
+      bullets: [
+        "Enfoque y tipo de investigación, cuantitativo, cualitativo o mixto",
+        "Hipótesis y variables de estudio, independiente, dependiente, definición conceptual y operacional",
+        "Definición de la población y de la muestra",
+        "Procedimientos para la recolección de datos",
+        "Técnicas, documental o de campo, como encuesta, entrevista u observación, e instrumentos, cuestionario, guía de entrevista, guía de observación, ficha de registro"
+      ]
+    },
+    {
+      num: 7,
+      title: "Recursos a utilizar",
+      bullets: [
+        "Financieros, materiales, técnicos, de infraestructura, humanos"
+      ]
+    },
+    {
+      num: 8,
+      title: "Programación de las actividades a desarrollar",
+      bullets: [
+        "Cronograma de las etapas del estudio"
+      ]
+    }
+  ];
+
+  var chevronSvg = '<svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true">' +
+    '<path d="M3 6L8 11L13 6" stroke="#5B5F66" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+
+  function escapeHtml(str) {
+    var div = document.createElement('div');
+    div.textContent = str;
+    return div.innerHTML;
+  }
+
+  function buildAccordion() {
+    var container = document.getElementById('accordion');
+    SECTIONS.forEach(function (section, idx) {
+      var item = document.createElement('div');
+      item.className = 'item' + (idx === 0 ? ' open' : '');
+
+      var btnId = 'sino-header-' + idx;
+      var panelId = 'sino-panel-' + idx;
+
+      var header = document.createElement('button');
+      header.className = 'item-header';
+      header.id = btnId;
+      header.setAttribute('type', 'button');
+      header.setAttribute('aria-expanded', idx === 0 ? 'true' : 'false');
+      header.setAttribute('aria-controls', panelId);
+      header.innerHTML =
+        '<span class="num">' + section.num + '</span>' +
+        '<span class="item-title">' + escapeHtml(section.title) + '</span>' +
+        '<span class="chev">' + chevronSvg + '</span>';
+
+      var content = document.createElement('div');
+      content.className = 'item-content';
+      content.id = panelId;
+      content.setAttribute('role', 'region');
+      content.setAttribute('aria-labelledby', btnId);
+      content.innerHTML = section.bullets.map(function (b) {
+        return '<div class="bullet">' + escapeHtml(b) + '</div>';
+      }).join('');
+
+      header.addEventListener('click', function () {
+        var isOpen = item.classList.toggle('open');
+        header.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+      });
+
+      item.appendChild(header);
+      item.appendChild(content);
+      container.appendChild(item);
     });
+  }
 
-    setHeight(item);
-  });
-
-  window.addEventListener('resize', () => {
-    items.forEach(setHeight);
-  });
+  buildAccordion();
 </script>
-
 </body>
 </html>
